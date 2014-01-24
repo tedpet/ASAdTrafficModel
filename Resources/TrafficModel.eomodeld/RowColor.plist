@@ -1,0 +1,34 @@
+{
+    attributes = (
+        {allowsNull = N; name = id; prototypeName = id; }, 
+        {columnName = isactive; name = isActive; prototypeName = intBoolean; }, 
+        {
+            allowsNull = Y; 
+            columnName = orderingint; 
+            name = orderingInt; 
+            prototypeName = intNumber; 
+        }, 
+        {
+            allowsNull = N; 
+            columnName = rowcolorname; 
+            name = rowColorName; 
+            prototypeName = longText; 
+        }
+    ); 
+    attributesUsedForLocking = (id, isActive, orderingInt, rowColorName); 
+    className = "com.as.model.RowColor"; 
+    classProperties = (adReleases, isActive, orderingInt, rowColorName); 
+    externalName = rowcolor; 
+    fetchSpecificationDictionary = {}; 
+    name = RowColor; 
+    primaryKeyAttributes = (id); 
+    relationships = (
+        {
+            destination = AdRelease; 
+            isToMany = Y; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = rowColorID; sourceAttribute = id; }); 
+            name = adReleases; 
+        }
+    ); 
+}

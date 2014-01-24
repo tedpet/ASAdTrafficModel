@@ -1,0 +1,59 @@
+{
+    attributes = (
+        {
+            allowsNull = Y; 
+            columnName = email; 
+            name = email; 
+            prototypeName = varchar255; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = firstname; 
+            name = firstName; 
+            prototypeName = varchar255; 
+        }, 
+        {allowsNull = N; name = id; prototypeName = id; }, 
+        {columnName = isactive; name = isActive; prototypeName = intBoolean; }, 
+        {
+            allowsNull = Y; 
+            columnName = lastname; 
+            name = lastName; 
+            prototypeName = varchar255; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = login; 
+            name = login; 
+            prototypeName = varchar255; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = password; 
+            name = password; 
+            prototypeName = varchar255; 
+        }, 
+        {
+            allowsNull = N; 
+            columnName = securityid; 
+            name = securityID; 
+            prototypeName = id; 
+        }
+    ); 
+    attributesUsedForLocking = (email, firstName, id, isActive, lastName, login, password, securityID); 
+    className = "com.as.model.Person"; 
+    classProperties = (email, firstName, isActive, lastName, login, password, security); 
+    externalName = Person; 
+    fetchSpecificationDictionary = {}; 
+    name = Person; 
+    primaryKeyAttributes = (id); 
+    relationships = (
+        {
+            destination = Security; 
+            isMandatory = Y; 
+            isToMany = N; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = id; sourceAttribute = securityID; }); 
+            name = security; 
+        }
+    ); 
+}

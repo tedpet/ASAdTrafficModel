@@ -1,0 +1,28 @@
+{
+    attributes = (
+        {
+            columnName = clientabbreviation; 
+            name = clientAbbreviation; 
+            prototypeName = longText; 
+        }, 
+        {columnName = clientname; name = clientName; prototypeName = longText; }, 
+        {allowsNull = N; name = id; prototypeName = id; }, 
+        {columnName = isactive; name = isActive; prototypeName = intBoolean; }
+    ); 
+    attributesUsedForLocking = (clientAbbreviation, clientName, id, isActive); 
+    className = "com.as.model.Client"; 
+    classProperties = (adReleases, clientAbbreviation, clientName, isActive); 
+    externalName = client; 
+    fetchSpecificationDictionary = {}; 
+    name = Client; 
+    primaryKeyAttributes = (id); 
+    relationships = (
+        {
+            destination = AdRelease; 
+            isToMany = Y; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = clientID; sourceAttribute = id; }); 
+            name = adReleases; 
+        }
+    ); 
+}

@@ -1,0 +1,135 @@
+{
+    attributes = (
+        {columnName = adtype; name = adType; prototypeName = longText; }, 
+        {allowsNull = N; columnName = clientid; name = clientID; prototypeName = id; }, 
+        {
+            allowsNull = Y; 
+            columnName = comments; 
+            name = comments; 
+            prototypeName = longText; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = creative; 
+            name = creative; 
+            prototypeName = longText; 
+        }, 
+        {columnName = duedate; name = dueDate; prototypeName = date; }, 
+        {allowsNull = Y; columnName = email; name = eMail; prototypeName = longText; }, 
+        {
+            allowsNull = Y; 
+            columnName = extstat; 
+            name = extStat; 
+            prototypeName = longText; 
+        }, 
+        {allowsNull = N; name = id; prototypeName = id; }, 
+        {columnName = isbillboard; name = isBillboard; prototypeName = intBoolean; }, 
+        {columnName = isclosed; name = isClosed; prototypeName = intBoolean; }, 
+        {columnName = isdigital; name = isDigital; prototypeName = intBoolean; }, 
+        {
+            allowsNull = N; 
+            columnName = issuedate; 
+            name = issueDate; 
+            prototypeName = longText; 
+        }, 
+        {
+            allowsNull = N; 
+            columnName = jobnumber; 
+            name = jobNumber; 
+            prototypeName = longText; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = phonenumber; 
+            name = phoneNumber; 
+            prototypeName = longText; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = pubcontact; 
+            name = pubContact; 
+            prototypeName = longText; 
+        }, 
+        {
+            allowsNull = N; 
+            columnName = publication; 
+            name = publication; 
+            prototypeName = longText; 
+        }, 
+        {
+            allowsNull = N; 
+            columnName = rowcolorid; 
+            name = rowColorID; 
+            prototypeName = id; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = status; 
+            name = status; 
+            prototypeName = longText; 
+        }, 
+        {allowsNull = Y; columnName = unit; name = unit; prototypeName = longText; }
+    ); 
+    attributesUsedForLocking = (
+        adType, 
+        clientID, 
+        creative, 
+        eMail, 
+        extStat, 
+        id, 
+        isBillboard, 
+        isClosed, 
+        isDigital, 
+        issueDate, 
+        jobNumber, 
+        phoneNumber, 
+        pubContact, 
+        publication, 
+        rowColorID, 
+        status, 
+        unit
+    ); 
+    className = "com.as.model.AdRelease"; 
+    classProperties = (
+        adType, 
+        client, 
+        comments, 
+        creative, 
+        dueDate, 
+        eMail, 
+        extStat, 
+        isBillboard, 
+        isClosed, 
+        isDigital, 
+        issueDate, 
+        jobNumber, 
+        phoneNumber, 
+        pubContact, 
+        publication, 
+        rowColor, 
+        status, 
+        unit
+    ); 
+    externalName = adrelease; 
+    fetchSpecificationDictionary = {}; 
+    name = AdRelease; 
+    primaryKeyAttributes = (id); 
+    relationships = (
+        {
+            destination = Client; 
+            isMandatory = Y; 
+            isToMany = N; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = id; sourceAttribute = clientID; }); 
+            name = client; 
+        }, 
+        {
+            destination = RowColor; 
+            isMandatory = Y; 
+            isToMany = N; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = id; sourceAttribute = rowColorID; }); 
+            name = rowColor; 
+        }
+    ); 
+}

@@ -1,0 +1,107 @@
+{
+    attributes = (
+        {
+            allowsNull = N; 
+            columnName = canaddnewrelease; 
+            name = canAddNewRelease; 
+            prototypeName = intBoolean; 
+        }, 
+        {
+            columnName = cancreateclient; 
+            name = canCreateClient; 
+            prototypeName = intBoolean; 
+        }, 
+        {
+            columnName = cancreateperson; 
+            name = canCreatePerson; 
+            prototypeName = intBoolean; 
+        }, 
+        {
+            columnName = candeleteadrelease; 
+            name = canDeleteAdRelease; 
+            prototypeName = intBoolean; 
+        }, 
+        {
+            columnName = candeleteclient; 
+            name = canDeleteClient; 
+            prototypeName = intBoolean; 
+        }, 
+        {
+            columnName = candeleteperson; 
+            name = canDeletePerson; 
+            prototypeName = intBoolean; 
+        }, 
+        {
+            columnName = caneditadrelease; 
+            name = canEditAdRelease; 
+            prototypeName = intBoolean; 
+        }, 
+        {
+            columnName = caneditclient; 
+            name = canEditClient; 
+            prototypeName = intBoolean; 
+        }, 
+        {
+            columnName = caneditperson; 
+            name = canEditPerson; 
+            prototypeName = intBoolean; 
+        }, 
+        {
+            columnName = canseeclients; 
+            name = canSeeClients; 
+            prototypeName = intBoolean; 
+        }, 
+        {columnName = canseeperson; name = canSeePerson; prototypeName = intBoolean; }, 
+        {allowsNull = N; name = id; prototypeName = id; }, 
+        {
+            allowsNull = N; 
+            columnName = seesshortlist; 
+            name = seesShortList; 
+            prototypeName = intBoolean; 
+        }
+    ); 
+    attributesUsedForLocking = (
+        canAddNewRelease, 
+        canCreateClient, 
+        canCreatePerson, 
+        canDeleteAdRelease, 
+        canDeleteClient, 
+        canDeletePerson, 
+        canEditAdRelease, 
+        canEditClient, 
+        canEditPerson, 
+        canSeeClients, 
+        canSeePerson, 
+        id, 
+        seesShortList
+    ); 
+    className = "com.as.model.Security"; 
+    classProperties = (
+        canAddNewRelease, 
+        canCreateClient, 
+        canCreatePerson, 
+        canDeleteAdRelease, 
+        canDeleteClient, 
+        canDeletePerson, 
+        canEditAdRelease, 
+        canEditClient, 
+        canEditPerson, 
+        canSeeClients, 
+        canSeePerson, 
+        persons, 
+        seesShortList
+    ); 
+    externalName = security; 
+    fetchSpecificationDictionary = {}; 
+    name = Security; 
+    primaryKeyAttributes = (id); 
+    relationships = (
+        {
+            destination = Person; 
+            isToMany = Y; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = securityID; sourceAttribute = id; }); 
+            name = persons; 
+        }
+    ); 
+}

@@ -1,0 +1,23 @@
+# OGNL
+ognl.helperFunctions=true
+ognl.inlineBindings=true
+
+# Misc
+er.extensions.stackTrace.cleanup=true
+
+# EOF
+er.extensions.ERXEC.safeLocking=true
+er.extensions.ERXEC.useSharedEditingContext=false
+er.extensions.ERXEnterpriseObject.applyRestrictingQualifierOnInsert=true
+er.extensions.ERXEnterpriseObject.updateInverseRelationships=true
+
+
+# Connection Dictionary
+# put the dictionary in the app
+
+# Migrations
+er.migration.migrateAtStartup=true
+er.migration.createTablesIfNecessary=true
+#commented out to make the system not look to the model only
+#er.migration.modelNames=TrafficModel 
+TrafficModel.MigrationClassPrefix=com.as.migration.AdReleaseMigration
