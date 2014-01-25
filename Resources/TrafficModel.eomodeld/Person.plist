@@ -7,7 +7,7 @@
             prototypeName = varchar255; 
         }, 
         {
-            allowsNull = Y; 
+            allowsNull = N; 
             columnName = firstname; 
             name = firstName; 
             prototypeName = varchar255; 
@@ -21,7 +21,7 @@
             prototypeName = varchar255; 
         }, 
         {
-            allowsNull = Y; 
+            allowsNull = N; 
             columnName = login; 
             name = login; 
             prototypeName = varchar255; 
