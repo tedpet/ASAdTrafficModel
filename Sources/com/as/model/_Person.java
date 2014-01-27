@@ -137,10 +137,14 @@ public abstract class _Person extends  ERXGenericRecord {
   }
   
 
-  public static Person createPerson(EOEditingContext editingContext, Boolean isActive
+  public static Person createPerson(EOEditingContext editingContext, String firstName
+, Boolean isActive
+, String login
 , com.as.model.Security security) {
     Person eo = (Person) EOUtilities.createAndInsertInstance(editingContext, _Person.ENTITY_NAME);    
+		eo.setFirstName(firstName);
 		eo.setIsActive(isActive);
+		eo.setLogin(login);
     eo.setSecurityRelationship(security);
     return eo;
   }
