@@ -1,0 +1,31 @@
+{
+    attributes = (
+        {allowsNull = N; columnName = clientid; name = clientID; prototypeName = id; }, 
+        {
+            allowsNull = Y; 
+            columnName = description; 
+            name = description; 
+            prototypeName = longText; 
+        }, 
+        {allowsNull = N; name = id; prototypeName = id; }, 
+        {columnName = isactive; name = isActive; prototypeName = intBoolean; }, 
+        {columnName = studiotitle; name = studioTitle; prototypeName = longText; }
+    ); 
+    attributesUsedForLocking = (clientID, description, id, isActive, studioTitle); 
+    className = "com.as.model.StudioNumber"; 
+    classProperties = (client, description, isActive, studioTitle); 
+    externalName = studionumber; 
+    fetchSpecificationDictionary = {}; 
+    name = StudioNumber; 
+    primaryKeyAttributes = (id); 
+    relationships = (
+        {
+            destination = Client; 
+            isMandatory = Y; 
+            isToMany = N; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = id; sourceAttribute = clientID; }); 
+            name = client; 
+        }
+    ); 
+}

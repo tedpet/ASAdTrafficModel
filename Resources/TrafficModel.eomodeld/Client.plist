@@ -11,7 +11,7 @@
     ); 
     attributesUsedForLocking = (clientAbbreviation, clientName, id, isActive); 
     className = "com.as.model.Client"; 
-    classProperties = (adReleases, clientAbbreviation, clientName, isActive); 
+    classProperties = (adReleases, clientAbbreviation, clientName, isActive, studioNumbers); 
     externalName = client; 
     fetchSpecificationDictionary = {}; 
     name = Client; 
@@ -23,6 +23,13 @@
             joinSemantic = EOInnerJoin; 
             joins = ({destinationAttribute = clientID; sourceAttribute = id; }); 
             name = adReleases; 
+        }, 
+        {
+            destination = StudioNumber; 
+            isToMany = Y; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = clientID; sourceAttribute = id; }); 
+            name = studioNumbers; 
         }
     ); 
 }

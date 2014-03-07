@@ -21,6 +21,7 @@ public abstract class _Client extends  ERXGenericRecord {
   public static final ERXKey<Boolean> IS_ACTIVE = new ERXKey<Boolean>("isActive");
   // Relationship Keys
   public static final ERXKey<com.as.model.AdRelease> AD_RELEASES = new ERXKey<com.as.model.AdRelease>("adReleases");
+  public static final ERXKey<com.as.model.StudioNumber> STUDIO_NUMBERS = new ERXKey<com.as.model.StudioNumber>("studioNumbers");
 
   // Attributes
   public static final String CLIENT_ABBREVIATION_KEY = CLIENT_ABBREVIATION.key();
@@ -28,6 +29,7 @@ public abstract class _Client extends  ERXGenericRecord {
   public static final String IS_ACTIVE_KEY = IS_ACTIVE.key();
   // Relationships
   public static final String AD_RELEASES_KEY = AD_RELEASES.key();
+  public static final String STUDIO_NUMBERS_KEY = STUDIO_NUMBERS.key();
 
   private static Logger LOG = Logger.getLogger(_Client.class);
 
@@ -163,6 +165,100 @@ public abstract class _Client extends  ERXGenericRecord {
     Enumeration<com.as.model.AdRelease> objects = adReleases().immutableClone().objectEnumerator();
     while (objects.hasMoreElements()) {
       deleteAdReleasesRelationship(objects.nextElement());
+    }
+  }
+
+  public NSArray<com.as.model.StudioNumber> studioNumbers() {
+    return (NSArray<com.as.model.StudioNumber>)storedValueForKey(_Client.STUDIO_NUMBERS_KEY);
+  }
+
+  public NSArray<com.as.model.StudioNumber> studioNumbers(EOQualifier qualifier) {
+    return studioNumbers(qualifier, null, false);
+  }
+
+  public NSArray<com.as.model.StudioNumber> studioNumbers(EOQualifier qualifier, boolean fetch) {
+    return studioNumbers(qualifier, null, fetch);
+  }
+
+  public NSArray<com.as.model.StudioNumber> studioNumbers(EOQualifier qualifier, NSArray<EOSortOrdering> sortOrderings, boolean fetch) {
+    NSArray<com.as.model.StudioNumber> results;
+    if (fetch) {
+      EOQualifier fullQualifier;
+      EOQualifier inverseQualifier = new EOKeyValueQualifier(com.as.model.StudioNumber.CLIENT_KEY, EOQualifier.QualifierOperatorEqual, this);
+    	
+      if (qualifier == null) {
+        fullQualifier = inverseQualifier;
+      }
+      else {
+        NSMutableArray<EOQualifier> qualifiers = new NSMutableArray<EOQualifier>();
+        qualifiers.addObject(qualifier);
+        qualifiers.addObject(inverseQualifier);
+        fullQualifier = new EOAndQualifier(qualifiers);
+      }
+
+      results = com.as.model.StudioNumber.fetchStudioNumbers(editingContext(), fullQualifier, sortOrderings);
+    }
+    else {
+      results = studioNumbers();
+      if (qualifier != null) {
+        results = (NSArray<com.as.model.StudioNumber>)EOQualifier.filteredArrayWithQualifier(results, qualifier);
+      }
+      if (sortOrderings != null) {
+        results = (NSArray<com.as.model.StudioNumber>)EOSortOrdering.sortedArrayUsingKeyOrderArray(results, sortOrderings);
+      }
+    }
+    return results;
+  }
+  
+  public void addToStudioNumbers(com.as.model.StudioNumber object) {
+    includeObjectIntoPropertyWithKey(object, _Client.STUDIO_NUMBERS_KEY);
+  }
+
+  public void removeFromStudioNumbers(com.as.model.StudioNumber object) {
+    excludeObjectFromPropertyWithKey(object, _Client.STUDIO_NUMBERS_KEY);
+  }
+
+  public void addToStudioNumbersRelationship(com.as.model.StudioNumber object) {
+    if (_Client.LOG.isDebugEnabled()) {
+      _Client.LOG.debug("adding " + object + " to studioNumbers relationship");
+    }
+    if (er.extensions.eof.ERXGenericRecord.InverseRelationshipUpdater.updateInverseRelationships()) {
+    	addToStudioNumbers(object);
+    }
+    else {
+    	addObjectToBothSidesOfRelationshipWithKey(object, _Client.STUDIO_NUMBERS_KEY);
+    }
+  }
+
+  public void removeFromStudioNumbersRelationship(com.as.model.StudioNumber object) {
+    if (_Client.LOG.isDebugEnabled()) {
+      _Client.LOG.debug("removing " + object + " from studioNumbers relationship");
+    }
+    if (er.extensions.eof.ERXGenericRecord.InverseRelationshipUpdater.updateInverseRelationships()) {
+    	removeFromStudioNumbers(object);
+    }
+    else {
+    	removeObjectFromBothSidesOfRelationshipWithKey(object, _Client.STUDIO_NUMBERS_KEY);
+    }
+  }
+
+  public com.as.model.StudioNumber createStudioNumbersRelationship() {
+    EOClassDescription eoClassDesc = EOClassDescription.classDescriptionForEntityName( com.as.model.StudioNumber.ENTITY_NAME );
+    EOEnterpriseObject eo = eoClassDesc.createInstanceWithEditingContext(editingContext(), null);
+    editingContext().insertObject(eo);
+    addObjectToBothSidesOfRelationshipWithKey(eo, _Client.STUDIO_NUMBERS_KEY);
+    return (com.as.model.StudioNumber) eo;
+  }
+
+  public void deleteStudioNumbersRelationship(com.as.model.StudioNumber object) {
+    removeObjectFromBothSidesOfRelationshipWithKey(object, _Client.STUDIO_NUMBERS_KEY);
+    editingContext().deleteObject(object);
+  }
+
+  public void deleteAllStudioNumbersRelationships() {
+    Enumeration<com.as.model.StudioNumber> objects = studioNumbers().immutableClone().objectEnumerator();
+    while (objects.hasMoreElements()) {
+      deleteStudioNumbersRelationship(objects.nextElement());
     }
   }
 

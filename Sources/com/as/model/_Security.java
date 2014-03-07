@@ -27,6 +27,7 @@ public abstract class _Security extends  ERXGenericRecord {
   public static final ERXKey<Boolean> CAN_EDIT_PERSON = new ERXKey<Boolean>("canEditPerson");
   public static final ERXKey<Boolean> CAN_SEE_CLIENTS = new ERXKey<Boolean>("canSeeClients");
   public static final ERXKey<Boolean> CAN_SEE_PERSON = new ERXKey<Boolean>("canSeePerson");
+  public static final ERXKey<Boolean> CAN_SEE_STUDIO_NUMBERS = new ERXKey<Boolean>("canSeeStudioNumbers");
   public static final ERXKey<Boolean> SEES_SHORT_LIST = new ERXKey<Boolean>("seesShortList");
   // Relationship Keys
   public static final ERXKey<com.as.model.Person> PERSONS = new ERXKey<com.as.model.Person>("persons");
@@ -43,6 +44,7 @@ public abstract class _Security extends  ERXGenericRecord {
   public static final String CAN_EDIT_PERSON_KEY = CAN_EDIT_PERSON.key();
   public static final String CAN_SEE_CLIENTS_KEY = CAN_SEE_CLIENTS.key();
   public static final String CAN_SEE_PERSON_KEY = CAN_SEE_PERSON.key();
+  public static final String CAN_SEE_STUDIO_NUMBERS_KEY = CAN_SEE_STUDIO_NUMBERS.key();
   public static final String SEES_SHORT_LIST_KEY = SEES_SHORT_LIST.key();
   // Relationships
   public static final String PERSONS_KEY = PERSONS.key();
@@ -178,6 +180,17 @@ public abstract class _Security extends  ERXGenericRecord {
     takeStoredValueForKey(value, _Security.CAN_SEE_PERSON_KEY);
   }
 
+  public Boolean canSeeStudioNumbers() {
+    return (Boolean) storedValueForKey(_Security.CAN_SEE_STUDIO_NUMBERS_KEY);
+  }
+
+  public void setCanSeeStudioNumbers(Boolean value) {
+    if (_Security.LOG.isDebugEnabled()) {
+    	_Security.LOG.debug( "updating canSeeStudioNumbers from " + canSeeStudioNumbers() + " to " + value);
+    }
+    takeStoredValueForKey(value, _Security.CAN_SEE_STUDIO_NUMBERS_KEY);
+  }
+
   public Boolean seesShortList() {
     return (Boolean) storedValueForKey(_Security.SEES_SHORT_LIST_KEY);
   }
@@ -295,6 +308,7 @@ public abstract class _Security extends  ERXGenericRecord {
 , Boolean canEditPerson
 , Boolean canSeeClients
 , Boolean canSeePerson
+, Boolean canSeeStudioNumbers
 , Boolean seesShortList
 ) {
     Security eo = (Security) EOUtilities.createAndInsertInstance(editingContext, _Security.ENTITY_NAME);    
@@ -309,6 +323,7 @@ public abstract class _Security extends  ERXGenericRecord {
 		eo.setCanEditPerson(canEditPerson);
 		eo.setCanSeeClients(canSeeClients);
 		eo.setCanSeePerson(canSeePerson);
+		eo.setCanSeeStudioNumbers(canSeeStudioNumbers);
 		eo.setSeesShortList(seesShortList);
     return eo;
   }

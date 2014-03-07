@@ -52,6 +52,12 @@
             prototypeName = intBoolean; 
         }, 
         {columnName = canseeperson; name = canSeePerson; prototypeName = intBoolean; }, 
+        {
+            allowsNull = N; 
+            columnName = canseestudionumbers; 
+            name = canSeeStudioNumbers; 
+            prototypeName = intBoolean; 
+        }, 
         {allowsNull = N; name = id; prototypeName = id; }, 
         {
             allowsNull = N; 
@@ -72,6 +78,7 @@
         canEditPerson, 
         canSeeClients, 
         canSeePerson, 
+        canSeeStudioNumbers, 
         id, 
         seesShortList
     ); 
@@ -88,6 +95,7 @@
         canEditPerson, 
         canSeeClients, 
         canSeePerson, 
+        canSeeStudioNumbers, 
         persons, 
         seesShortList
     ); 
