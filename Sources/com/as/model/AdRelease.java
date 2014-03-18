@@ -4,6 +4,8 @@ import org.apache.log4j.Logger;
 
 import com.webobjects.eocontrol.EOEditingContext;
 import com.webobjects.foundation.NSArray;
+import com.webobjects.foundation.NSLog;
+import com.webobjects.foundation.NSValidation;
 
 public class AdRelease extends _AdRelease {
 	@SuppressWarnings("unused")
@@ -48,5 +50,23 @@ public class AdRelease extends _AdRelease {
 		return rowColorList;
 	}
 
+
+
+  public Object validatePhoneNumber(Object value) throws NSValidation.ValidationException {
+    return value == null ? "---" : value;
+  }
+  
+  public Object validateEMail(Object value) throws NSValidation.ValidationException {
+    return value == null ? "---" : value;
+  }
+  
+  public Object validatePubContact(Object value) throws NSValidation.ValidationException {
+    return value == null ? "---" : value;
+  }
+  
+  public Object validateComments(Object value) throws NSValidation.ValidationException {
+    return value == null ? "---" : value;
+  }
+  
 
 }

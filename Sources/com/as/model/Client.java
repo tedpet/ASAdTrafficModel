@@ -2,6 +2,7 @@ package com.as.model;
 
 import org.apache.log4j.Logger;
 
+import com.webobjects.eocontrol.EOEditingContext;
 import com.webobjects.foundation.NSArray;
 
 public class Client extends _Client {
@@ -15,5 +16,15 @@ public class Client extends _Client {
 	    return clientList;
 	}
 
+  public void awakeFromInsertion (EOEditingContext editingContext) {
+    super.awakeFromInsertion (editingContext);
 
+    //    NSLog.out.appendln("*** awakeFromInsertion");
+
+    /*
+     * set the default isActive to true
+     */
+
+    this.setIsActive(true);
+  }
 }
