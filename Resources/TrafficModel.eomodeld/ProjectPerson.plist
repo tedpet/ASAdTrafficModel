@@ -1,0 +1,40 @@
+{
+    attributes = (
+        {columnName = complete; name = complete; prototypeName = intBoolean; }, 
+        {allowsNull = Y; columnName = duedate; name = dueDate; prototypeName = date; }, 
+        {allowsNull = N; name = id; prototypeName = id; }, 
+        {allowsNull = N; columnName = personid; name = personID; prototypeName = id; }, 
+        {columnName = personstep; name = personStep; prototypeName = longText; }, 
+        {
+            allowsNull = N; 
+            columnName = projectid; 
+            name = projectID; 
+            prototypeName = id; 
+        }
+    ); 
+    attributesUsedForLocking = (complete, id, personID, personStep, projectID); 
+    className = "com.as.model.ProjectPerson"; 
+    classProperties = (complete, dueDate, person, personStep, project); 
+    externalName = projectperson; 
+    fetchSpecificationDictionary = {}; 
+    name = ProjectPerson; 
+    primaryKeyAttributes = (id); 
+    relationships = (
+        {
+            destination = Person; 
+            isMandatory = Y; 
+            isToMany = N; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = id; sourceAttribute = personID; }); 
+            name = person; 
+        }, 
+        {
+            destination = Project; 
+            isMandatory = Y; 
+            isToMany = N; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = id; sourceAttribute = projectID; }); 
+            name = project; 
+        }
+    ); 
+}

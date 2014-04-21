@@ -25,9 +25,12 @@ public abstract class _Security extends  ERXGenericRecord {
   public static final ERXKey<Boolean> CAN_EDIT_AD_RELEASE = new ERXKey<Boolean>("canEditAdRelease");
   public static final ERXKey<Boolean> CAN_EDIT_CLIENT = new ERXKey<Boolean>("canEditClient");
   public static final ERXKey<Boolean> CAN_EDIT_PERSON = new ERXKey<Boolean>("canEditPerson");
+  public static final ERXKey<Boolean> CAN_EDIT_PROJECTS = new ERXKey<Boolean>("canEditProjects");
   public static final ERXKey<Boolean> CAN_SEE_CLIENTS = new ERXKey<Boolean>("canSeeClients");
   public static final ERXKey<Boolean> CAN_SEE_PERSON = new ERXKey<Boolean>("canSeePerson");
+  public static final ERXKey<Boolean> CAN_SEE_PROJECTS = new ERXKey<Boolean>("canSeeProjects");
   public static final ERXKey<Boolean> CAN_SEE_STUDIO_NUMBERS = new ERXKey<Boolean>("canSeeStudioNumbers");
+  public static final ERXKey<Boolean> IS_INCLUDED_IN_PROJECTS = new ERXKey<Boolean>("isIncludedInProjects");
   public static final ERXKey<Boolean> SEES_SHORT_LIST = new ERXKey<Boolean>("seesShortList");
   // Relationship Keys
   public static final ERXKey<com.as.model.Person> PERSONS = new ERXKey<com.as.model.Person>("persons");
@@ -42,9 +45,12 @@ public abstract class _Security extends  ERXGenericRecord {
   public static final String CAN_EDIT_AD_RELEASE_KEY = CAN_EDIT_AD_RELEASE.key();
   public static final String CAN_EDIT_CLIENT_KEY = CAN_EDIT_CLIENT.key();
   public static final String CAN_EDIT_PERSON_KEY = CAN_EDIT_PERSON.key();
+  public static final String CAN_EDIT_PROJECTS_KEY = CAN_EDIT_PROJECTS.key();
   public static final String CAN_SEE_CLIENTS_KEY = CAN_SEE_CLIENTS.key();
   public static final String CAN_SEE_PERSON_KEY = CAN_SEE_PERSON.key();
+  public static final String CAN_SEE_PROJECTS_KEY = CAN_SEE_PROJECTS.key();
   public static final String CAN_SEE_STUDIO_NUMBERS_KEY = CAN_SEE_STUDIO_NUMBERS.key();
+  public static final String IS_INCLUDED_IN_PROJECTS_KEY = IS_INCLUDED_IN_PROJECTS.key();
   public static final String SEES_SHORT_LIST_KEY = SEES_SHORT_LIST.key();
   // Relationships
   public static final String PERSONS_KEY = PERSONS.key();
@@ -158,6 +164,17 @@ public abstract class _Security extends  ERXGenericRecord {
     takeStoredValueForKey(value, _Security.CAN_EDIT_PERSON_KEY);
   }
 
+  public Boolean canEditProjects() {
+    return (Boolean) storedValueForKey(_Security.CAN_EDIT_PROJECTS_KEY);
+  }
+
+  public void setCanEditProjects(Boolean value) {
+    if (_Security.LOG.isDebugEnabled()) {
+    	_Security.LOG.debug( "updating canEditProjects from " + canEditProjects() + " to " + value);
+    }
+    takeStoredValueForKey(value, _Security.CAN_EDIT_PROJECTS_KEY);
+  }
+
   public Boolean canSeeClients() {
     return (Boolean) storedValueForKey(_Security.CAN_SEE_CLIENTS_KEY);
   }
@@ -180,6 +197,17 @@ public abstract class _Security extends  ERXGenericRecord {
     takeStoredValueForKey(value, _Security.CAN_SEE_PERSON_KEY);
   }
 
+  public Boolean canSeeProjects() {
+    return (Boolean) storedValueForKey(_Security.CAN_SEE_PROJECTS_KEY);
+  }
+
+  public void setCanSeeProjects(Boolean value) {
+    if (_Security.LOG.isDebugEnabled()) {
+    	_Security.LOG.debug( "updating canSeeProjects from " + canSeeProjects() + " to " + value);
+    }
+    takeStoredValueForKey(value, _Security.CAN_SEE_PROJECTS_KEY);
+  }
+
   public Boolean canSeeStudioNumbers() {
     return (Boolean) storedValueForKey(_Security.CAN_SEE_STUDIO_NUMBERS_KEY);
   }
@@ -189,6 +217,17 @@ public abstract class _Security extends  ERXGenericRecord {
     	_Security.LOG.debug( "updating canSeeStudioNumbers from " + canSeeStudioNumbers() + " to " + value);
     }
     takeStoredValueForKey(value, _Security.CAN_SEE_STUDIO_NUMBERS_KEY);
+  }
+
+  public Boolean isIncludedInProjects() {
+    return (Boolean) storedValueForKey(_Security.IS_INCLUDED_IN_PROJECTS_KEY);
+  }
+
+  public void setIsIncludedInProjects(Boolean value) {
+    if (_Security.LOG.isDebugEnabled()) {
+    	_Security.LOG.debug( "updating isIncludedInProjects from " + isIncludedInProjects() + " to " + value);
+    }
+    takeStoredValueForKey(value, _Security.IS_INCLUDED_IN_PROJECTS_KEY);
   }
 
   public Boolean seesShortList() {
@@ -306,9 +345,12 @@ public abstract class _Security extends  ERXGenericRecord {
 , Boolean canEditAdRelease
 , Boolean canEditClient
 , Boolean canEditPerson
+, Boolean canEditProjects
 , Boolean canSeeClients
 , Boolean canSeePerson
+, Boolean canSeeProjects
 , Boolean canSeeStudioNumbers
+, Boolean isIncludedInProjects
 , Boolean seesShortList
 ) {
     Security eo = (Security) EOUtilities.createAndInsertInstance(editingContext, _Security.ENTITY_NAME);    
@@ -321,9 +363,12 @@ public abstract class _Security extends  ERXGenericRecord {
 		eo.setCanEditAdRelease(canEditAdRelease);
 		eo.setCanEditClient(canEditClient);
 		eo.setCanEditPerson(canEditPerson);
+		eo.setCanEditProjects(canEditProjects);
 		eo.setCanSeeClients(canSeeClients);
 		eo.setCanSeePerson(canSeePerson);
+		eo.setCanSeeProjects(canSeeProjects);
 		eo.setCanSeeStudioNumbers(canSeeStudioNumbers);
+		eo.setIsIncludedInProjects(isIncludedInProjects);
 		eo.setSeesShortList(seesShortList);
     return eo;
   }

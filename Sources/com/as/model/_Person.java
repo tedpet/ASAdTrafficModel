@@ -18,21 +18,27 @@ public abstract class _Person extends  ERXGenericRecord {
   // Attribute Keys
   public static final ERXKey<String> EMAIL = new ERXKey<String>("email");
   public static final ERXKey<String> FIRST_NAME = new ERXKey<String>("firstName");
+  public static final ERXKey<String> FULL_NAME = new ERXKey<String>("fullName");
   public static final ERXKey<Boolean> IS_ACTIVE = new ERXKey<Boolean>("isActive");
   public static final ERXKey<String> LAST_NAME = new ERXKey<String>("lastName");
   public static final ERXKey<String> LOGIN = new ERXKey<String>("login");
   public static final ERXKey<String> PASSWORD = new ERXKey<String>("password");
+  public static final ERXKey<String> TITLE = new ERXKey<String>("title");
   // Relationship Keys
+  public static final ERXKey<com.as.model.ProjectPerson> PROJECT_PERSONS = new ERXKey<com.as.model.ProjectPerson>("projectPersons");
   public static final ERXKey<com.as.model.Security> SECURITY = new ERXKey<com.as.model.Security>("security");
 
   // Attributes
   public static final String EMAIL_KEY = EMAIL.key();
   public static final String FIRST_NAME_KEY = FIRST_NAME.key();
+  public static final String FULL_NAME_KEY = FULL_NAME.key();
   public static final String IS_ACTIVE_KEY = IS_ACTIVE.key();
   public static final String LAST_NAME_KEY = LAST_NAME.key();
   public static final String LOGIN_KEY = LOGIN.key();
   public static final String PASSWORD_KEY = PASSWORD.key();
+  public static final String TITLE_KEY = TITLE.key();
   // Relationships
+  public static final String PROJECT_PERSONS_KEY = PROJECT_PERSONS.key();
   public static final String SECURITY_KEY = SECURITY.key();
 
   private static Logger LOG = Logger.getLogger(_Person.class);
@@ -65,6 +71,17 @@ public abstract class _Person extends  ERXGenericRecord {
     	_Person.LOG.debug( "updating firstName from " + firstName() + " to " + value);
     }
     takeStoredValueForKey(value, _Person.FIRST_NAME_KEY);
+  }
+
+  public String fullName() {
+    return (String) storedValueForKey(_Person.FULL_NAME_KEY);
+  }
+
+  public void setFullName(String value) {
+    if (_Person.LOG.isDebugEnabled()) {
+    	_Person.LOG.debug( "updating fullName from " + fullName() + " to " + value);
+    }
+    takeStoredValueForKey(value, _Person.FULL_NAME_KEY);
   }
 
   public Boolean isActive() {
@@ -111,6 +128,17 @@ public abstract class _Person extends  ERXGenericRecord {
     takeStoredValueForKey(value, _Person.PASSWORD_KEY);
   }
 
+  public String title() {
+    return (String) storedValueForKey(_Person.TITLE_KEY);
+  }
+
+  public void setTitle(String value) {
+    if (_Person.LOG.isDebugEnabled()) {
+    	_Person.LOG.debug( "updating title from " + title() + " to " + value);
+    }
+    takeStoredValueForKey(value, _Person.TITLE_KEY);
+  }
+
   public com.as.model.Security security() {
     return (com.as.model.Security)storedValueForKey(_Person.SECURITY_KEY);
   }
@@ -136,13 +164,109 @@ public abstract class _Person extends  ERXGenericRecord {
     }
   }
   
+  public NSArray<com.as.model.ProjectPerson> projectPersons() {
+    return (NSArray<com.as.model.ProjectPerson>)storedValueForKey(_Person.PROJECT_PERSONS_KEY);
+  }
+
+  public NSArray<com.as.model.ProjectPerson> projectPersons(EOQualifier qualifier) {
+    return projectPersons(qualifier, null, false);
+  }
+
+  public NSArray<com.as.model.ProjectPerson> projectPersons(EOQualifier qualifier, boolean fetch) {
+    return projectPersons(qualifier, null, fetch);
+  }
+
+  public NSArray<com.as.model.ProjectPerson> projectPersons(EOQualifier qualifier, NSArray<EOSortOrdering> sortOrderings, boolean fetch) {
+    NSArray<com.as.model.ProjectPerson> results;
+    if (fetch) {
+      EOQualifier fullQualifier;
+      EOQualifier inverseQualifier = new EOKeyValueQualifier(com.as.model.ProjectPerson.PERSON_KEY, EOQualifier.QualifierOperatorEqual, this);
+    	
+      if (qualifier == null) {
+        fullQualifier = inverseQualifier;
+      }
+      else {
+        NSMutableArray<EOQualifier> qualifiers = new NSMutableArray<EOQualifier>();
+        qualifiers.addObject(qualifier);
+        qualifiers.addObject(inverseQualifier);
+        fullQualifier = new EOAndQualifier(qualifiers);
+      }
+
+      results = com.as.model.ProjectPerson.fetchProjectPersons(editingContext(), fullQualifier, sortOrderings);
+    }
+    else {
+      results = projectPersons();
+      if (qualifier != null) {
+        results = (NSArray<com.as.model.ProjectPerson>)EOQualifier.filteredArrayWithQualifier(results, qualifier);
+      }
+      if (sortOrderings != null) {
+        results = (NSArray<com.as.model.ProjectPerson>)EOSortOrdering.sortedArrayUsingKeyOrderArray(results, sortOrderings);
+      }
+    }
+    return results;
+  }
+  
+  public void addToProjectPersons(com.as.model.ProjectPerson object) {
+    includeObjectIntoPropertyWithKey(object, _Person.PROJECT_PERSONS_KEY);
+  }
+
+  public void removeFromProjectPersons(com.as.model.ProjectPerson object) {
+    excludeObjectFromPropertyWithKey(object, _Person.PROJECT_PERSONS_KEY);
+  }
+
+  public void addToProjectPersonsRelationship(com.as.model.ProjectPerson object) {
+    if (_Person.LOG.isDebugEnabled()) {
+      _Person.LOG.debug("adding " + object + " to projectPersons relationship");
+    }
+    if (er.extensions.eof.ERXGenericRecord.InverseRelationshipUpdater.updateInverseRelationships()) {
+    	addToProjectPersons(object);
+    }
+    else {
+    	addObjectToBothSidesOfRelationshipWithKey(object, _Person.PROJECT_PERSONS_KEY);
+    }
+  }
+
+  public void removeFromProjectPersonsRelationship(com.as.model.ProjectPerson object) {
+    if (_Person.LOG.isDebugEnabled()) {
+      _Person.LOG.debug("removing " + object + " from projectPersons relationship");
+    }
+    if (er.extensions.eof.ERXGenericRecord.InverseRelationshipUpdater.updateInverseRelationships()) {
+    	removeFromProjectPersons(object);
+    }
+    else {
+    	removeObjectFromBothSidesOfRelationshipWithKey(object, _Person.PROJECT_PERSONS_KEY);
+    }
+  }
+
+  public com.as.model.ProjectPerson createProjectPersonsRelationship() {
+    EOClassDescription eoClassDesc = EOClassDescription.classDescriptionForEntityName( com.as.model.ProjectPerson.ENTITY_NAME );
+    EOEnterpriseObject eo = eoClassDesc.createInstanceWithEditingContext(editingContext(), null);
+    editingContext().insertObject(eo);
+    addObjectToBothSidesOfRelationshipWithKey(eo, _Person.PROJECT_PERSONS_KEY);
+    return (com.as.model.ProjectPerson) eo;
+  }
+
+  public void deleteProjectPersonsRelationship(com.as.model.ProjectPerson object) {
+    removeObjectFromBothSidesOfRelationshipWithKey(object, _Person.PROJECT_PERSONS_KEY);
+    editingContext().deleteObject(object);
+  }
+
+  public void deleteAllProjectPersonsRelationships() {
+    Enumeration<com.as.model.ProjectPerson> objects = projectPersons().immutableClone().objectEnumerator();
+    while (objects.hasMoreElements()) {
+      deleteProjectPersonsRelationship(objects.nextElement());
+    }
+  }
+
 
   public static Person createPerson(EOEditingContext editingContext, String firstName
+, String fullName
 , Boolean isActive
 , String login
 , com.as.model.Security security) {
     Person eo = (Person) EOUtilities.createAndInsertInstance(editingContext, _Person.ENTITY_NAME);    
 		eo.setFirstName(firstName);
+		eo.setFullName(fullName);
 		eo.setIsActive(isActive);
 		eo.setLogin(login);
     eo.setSecurityRelationship(security);
@@ -207,4 +331,28 @@ public abstract class _Person extends  ERXGenericRecord {
     }
     return localInstance;
   }
+  public static NSArray<com.as.model.Person> fetchActiveUsers(EOEditingContext editingContext, NSDictionary<String, Object> bindings) {
+    EOFetchSpecification fetchSpec = EOFetchSpecification.fetchSpecificationNamed("activeUsers", _Person.ENTITY_NAME);
+    fetchSpec = fetchSpec.fetchSpecificationWithQualifierBindings(bindings);
+    return (NSArray<com.as.model.Person>)editingContext.objectsWithFetchSpecification(fetchSpec);
+  }
+  
+  public static NSArray<com.as.model.Person> fetchActiveUsers(EOEditingContext editingContext)
+  {
+    EOFetchSpecification fetchSpec = EOFetchSpecification.fetchSpecificationNamed("activeUsers", _Person.ENTITY_NAME);
+    return (NSArray<com.as.model.Person>)editingContext.objectsWithFetchSpecification(fetchSpec);
+  }
+  
+  public static NSArray<com.as.model.Person> fetchIsIncludedInProjects(EOEditingContext editingContext, NSDictionary<String, Object> bindings) {
+    EOFetchSpecification fetchSpec = EOFetchSpecification.fetchSpecificationNamed("isIncludedInProjects", _Person.ENTITY_NAME);
+    fetchSpec = fetchSpec.fetchSpecificationWithQualifierBindings(bindings);
+    return (NSArray<com.as.model.Person>)editingContext.objectsWithFetchSpecification(fetchSpec);
+  }
+  
+  public static NSArray<com.as.model.Person> fetchIsIncludedInProjects(EOEditingContext editingContext)
+  {
+    EOFetchSpecification fetchSpec = EOFetchSpecification.fetchSpecificationNamed("isIncludedInProjects", _Person.ENTITY_NAME);
+    return (NSArray<com.as.model.Person>)editingContext.objectsWithFetchSpecification(fetchSpec);
+  }
+  
 }

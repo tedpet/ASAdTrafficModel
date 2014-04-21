@@ -47,6 +47,11 @@
             prototypeName = intBoolean; 
         }, 
         {
+            columnName = caneditprojects; 
+            name = canEditProjects; 
+            prototypeName = intBoolean; 
+        }, 
+        {
             columnName = canseeclients; 
             name = canSeeClients; 
             prototypeName = intBoolean; 
@@ -54,11 +59,22 @@
         {columnName = canseeperson; name = canSeePerson; prototypeName = intBoolean; }, 
         {
             allowsNull = N; 
+            columnName = canseeprojects; 
+            name = canSeeProjects; 
+            prototypeName = intBoolean; 
+        }, 
+        {
+            allowsNull = N; 
             columnName = canseestudionumbers; 
             name = canSeeStudioNumbers; 
             prototypeName = intBoolean; 
         }, 
         {allowsNull = N; name = id; prototypeName = id; }, 
+        {
+            columnName = isincludedinprojects; 
+            name = isIncludedInProjects; 
+            prototypeName = intBoolean; 
+        }, 
         {
             allowsNull = N; 
             columnName = seesshortlist; 
@@ -76,10 +92,13 @@
         canEditAdRelease, 
         canEditClient, 
         canEditPerson, 
+        canEditProjects, 
         canSeeClients, 
         canSeePerson, 
+        canSeeProjects, 
         canSeeStudioNumbers, 
         id, 
+        isIncludedInProjects, 
         seesShortList
     ); 
     className = "com.as.model.Security"; 
@@ -93,9 +112,12 @@
         canEditAdRelease, 
         canEditClient, 
         canEditPerson, 
+        canEditProjects, 
         canSeeClients, 
         canSeePerson, 
+        canSeeProjects, 
         canSeeStudioNumbers, 
+        isIncludedInProjects, 
         persons, 
         seesShortList
     ); 

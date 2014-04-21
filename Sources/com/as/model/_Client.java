@@ -21,6 +21,7 @@ public abstract class _Client extends  ERXGenericRecord {
   public static final ERXKey<Boolean> IS_ACTIVE = new ERXKey<Boolean>("isActive");
   // Relationship Keys
   public static final ERXKey<com.as.model.AdRelease> AD_RELEASES = new ERXKey<com.as.model.AdRelease>("adReleases");
+  public static final ERXKey<com.as.model.Project> PROJECTS = new ERXKey<com.as.model.Project>("projects");
   public static final ERXKey<com.as.model.StudioNumber> STUDIO_NUMBERS = new ERXKey<com.as.model.StudioNumber>("studioNumbers");
 
   // Attributes
@@ -29,6 +30,7 @@ public abstract class _Client extends  ERXGenericRecord {
   public static final String IS_ACTIVE_KEY = IS_ACTIVE.key();
   // Relationships
   public static final String AD_RELEASES_KEY = AD_RELEASES.key();
+  public static final String PROJECTS_KEY = PROJECTS.key();
   public static final String STUDIO_NUMBERS_KEY = STUDIO_NUMBERS.key();
 
   private static Logger LOG = Logger.getLogger(_Client.class);
@@ -165,6 +167,100 @@ public abstract class _Client extends  ERXGenericRecord {
     Enumeration<com.as.model.AdRelease> objects = adReleases().immutableClone().objectEnumerator();
     while (objects.hasMoreElements()) {
       deleteAdReleasesRelationship(objects.nextElement());
+    }
+  }
+
+  public NSArray<com.as.model.Project> projects() {
+    return (NSArray<com.as.model.Project>)storedValueForKey(_Client.PROJECTS_KEY);
+  }
+
+  public NSArray<com.as.model.Project> projects(EOQualifier qualifier) {
+    return projects(qualifier, null, false);
+  }
+
+  public NSArray<com.as.model.Project> projects(EOQualifier qualifier, boolean fetch) {
+    return projects(qualifier, null, fetch);
+  }
+
+  public NSArray<com.as.model.Project> projects(EOQualifier qualifier, NSArray<EOSortOrdering> sortOrderings, boolean fetch) {
+    NSArray<com.as.model.Project> results;
+    if (fetch) {
+      EOQualifier fullQualifier;
+      EOQualifier inverseQualifier = new EOKeyValueQualifier(com.as.model.Project.CLIENT_KEY, EOQualifier.QualifierOperatorEqual, this);
+    	
+      if (qualifier == null) {
+        fullQualifier = inverseQualifier;
+      }
+      else {
+        NSMutableArray<EOQualifier> qualifiers = new NSMutableArray<EOQualifier>();
+        qualifiers.addObject(qualifier);
+        qualifiers.addObject(inverseQualifier);
+        fullQualifier = new EOAndQualifier(qualifiers);
+      }
+
+      results = com.as.model.Project.fetchProjects(editingContext(), fullQualifier, sortOrderings);
+    }
+    else {
+      results = projects();
+      if (qualifier != null) {
+        results = (NSArray<com.as.model.Project>)EOQualifier.filteredArrayWithQualifier(results, qualifier);
+      }
+      if (sortOrderings != null) {
+        results = (NSArray<com.as.model.Project>)EOSortOrdering.sortedArrayUsingKeyOrderArray(results, sortOrderings);
+      }
+    }
+    return results;
+  }
+  
+  public void addToProjects(com.as.model.Project object) {
+    includeObjectIntoPropertyWithKey(object, _Client.PROJECTS_KEY);
+  }
+
+  public void removeFromProjects(com.as.model.Project object) {
+    excludeObjectFromPropertyWithKey(object, _Client.PROJECTS_KEY);
+  }
+
+  public void addToProjectsRelationship(com.as.model.Project object) {
+    if (_Client.LOG.isDebugEnabled()) {
+      _Client.LOG.debug("adding " + object + " to projects relationship");
+    }
+    if (er.extensions.eof.ERXGenericRecord.InverseRelationshipUpdater.updateInverseRelationships()) {
+    	addToProjects(object);
+    }
+    else {
+    	addObjectToBothSidesOfRelationshipWithKey(object, _Client.PROJECTS_KEY);
+    }
+  }
+
+  public void removeFromProjectsRelationship(com.as.model.Project object) {
+    if (_Client.LOG.isDebugEnabled()) {
+      _Client.LOG.debug("removing " + object + " from projects relationship");
+    }
+    if (er.extensions.eof.ERXGenericRecord.InverseRelationshipUpdater.updateInverseRelationships()) {
+    	removeFromProjects(object);
+    }
+    else {
+    	removeObjectFromBothSidesOfRelationshipWithKey(object, _Client.PROJECTS_KEY);
+    }
+  }
+
+  public com.as.model.Project createProjectsRelationship() {
+    EOClassDescription eoClassDesc = EOClassDescription.classDescriptionForEntityName( com.as.model.Project.ENTITY_NAME );
+    EOEnterpriseObject eo = eoClassDesc.createInstanceWithEditingContext(editingContext(), null);
+    editingContext().insertObject(eo);
+    addObjectToBothSidesOfRelationshipWithKey(eo, _Client.PROJECTS_KEY);
+    return (com.as.model.Project) eo;
+  }
+
+  public void deleteProjectsRelationship(com.as.model.Project object) {
+    removeObjectFromBothSidesOfRelationshipWithKey(object, _Client.PROJECTS_KEY);
+    editingContext().deleteObject(object);
+  }
+
+  public void deleteAllProjectsRelationships() {
+    Enumeration<com.as.model.Project> objects = projects().immutableClone().objectEnumerator();
+    while (objects.hasMoreElements()) {
+      deleteProjectsRelationship(objects.nextElement());
     }
   }
 
@@ -332,4 +428,28 @@ public abstract class _Client extends  ERXGenericRecord {
     }
     return localInstance;
   }
+  public static NSArray<com.as.model.Client> fetchActiveClients(EOEditingContext editingContext, NSDictionary<String, Object> bindings) {
+    EOFetchSpecification fetchSpec = EOFetchSpecification.fetchSpecificationNamed("activeClients", _Client.ENTITY_NAME);
+    fetchSpec = fetchSpec.fetchSpecificationWithQualifierBindings(bindings);
+    return (NSArray<com.as.model.Client>)editingContext.objectsWithFetchSpecification(fetchSpec);
+  }
+  
+  public static NSArray<com.as.model.Client> fetchActiveClients(EOEditingContext editingContext)
+  {
+    EOFetchSpecification fetchSpec = EOFetchSpecification.fetchSpecificationNamed("activeClients", _Client.ENTITY_NAME);
+    return (NSArray<com.as.model.Client>)editingContext.objectsWithFetchSpecification(fetchSpec);
+  }
+  
+  public static NSArray<com.as.model.Client> fetchIsActive(EOEditingContext editingContext, NSDictionary<String, Object> bindings) {
+    EOFetchSpecification fetchSpec = EOFetchSpecification.fetchSpecificationNamed("isActive", _Client.ENTITY_NAME);
+    fetchSpec = fetchSpec.fetchSpecificationWithQualifierBindings(bindings);
+    return (NSArray<com.as.model.Client>)editingContext.objectsWithFetchSpecification(fetchSpec);
+  }
+  
+  public static NSArray<com.as.model.Client> fetchIsActive(EOEditingContext editingContext)
+  {
+    EOFetchSpecification fetchSpec = EOFetchSpecification.fetchSpecificationNamed("isActive", _Client.ENTITY_NAME);
+    return (NSArray<com.as.model.Client>)editingContext.objectsWithFetchSpecification(fetchSpec);
+  }
+  
 }

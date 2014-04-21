@@ -11,6 +11,7 @@ public class AdRelease extends _AdRelease {
 	@SuppressWarnings("unused")
 	private static Logger log = Logger.getLogger(AdRelease.class);
 
+	@Override
 	public void awakeFromInsertion (EOEditingContext editingContext) {
 		super.awakeFromInsertion (editingContext);
 

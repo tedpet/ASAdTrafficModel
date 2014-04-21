@@ -1,0 +1,35 @@
+{
+    activeUsers = {
+        class = EOFetchSpecification; 
+        entityName = Person; 
+        prefetchingRelationshipKeyPaths = (); 
+        qualifier = {
+            class = EOKeyValueQualifier; 
+            key = isActive; 
+            selectorName = "isEqualTo:"; 
+            value = {class = NSNumber; value = 1; }; 
+        }; 
+    }; 
+    isIncludedInProjects = {
+        class = EOFetchSpecification; 
+        entityName = Person; 
+        prefetchingRelationshipKeyPaths = (); 
+        qualifier = {
+            class = EOAndQualifier; 
+            qualifiers = (
+                {
+                    class = EOKeyValueQualifier; 
+                    key = isActive; 
+                    selectorName = "isEqualTo:"; 
+                    value = {class = NSNumber; value = 1; }; 
+                }, 
+                {
+                    class = EOKeyValueQualifier; 
+                    key = "security.isIncludedInProjects"; 
+                    selectorName = "isEqualTo:"; 
+                    value = {class = NSNumber; value = 1; }; 
+                }
+            ); 
+        }; 
+    }; 
+}

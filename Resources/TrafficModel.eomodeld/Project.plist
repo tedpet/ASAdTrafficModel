@@ -1,0 +1,58 @@
+{
+    attributes = (
+        {allowsNull = N; columnName = clientid; name = clientID; prototypeName = id; }, 
+        {columnName = duedate; name = dueDate; prototypeName = date; }, 
+        {allowsNull = N; name = id; prototypeName = id; }, 
+        {columnName = isactive; name = isActive; prototypeName = intBoolean; }, 
+        {columnName = presentation; name = presentation; prototypeName = intBoolean; }, 
+        {columnName = priority; name = priority; prototypeName = intBoolean; }, 
+        {
+            allowsNull = Y; 
+            columnName = projectdescription; 
+            name = projectDescription; 
+            prototypeName = longText; 
+        }, 
+        {columnName = projecttitle; name = projectTitle; prototypeName = longText; }
+    ); 
+    attributesUsedForLocking = (
+        clientID, 
+        id, 
+        isActive, 
+        presentation, 
+        priority, 
+        projectDescription, 
+        projectTitle
+    ); 
+    className = "com.as.model.Project"; 
+    classProperties = (
+        client, 
+        dueDate, 
+        isActive, 
+        presentation, 
+        priority, 
+        projectDescription, 
+        projectPersons, 
+        projectTitle
+    ); 
+    externalName = project; 
+    fetchSpecificationDictionary = {}; 
+    name = Project; 
+    primaryKeyAttributes = (id); 
+    relationships = (
+        {
+            destination = Client; 
+            isMandatory = Y; 
+            isToMany = N; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = id; sourceAttribute = clientID; }); 
+            name = client; 
+        }, 
+        {
+            destination = ProjectPerson; 
+            isToMany = Y; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = projectID; sourceAttribute = id; }); 
+            name = projectPersons; 
+        }
+    ); 
+}

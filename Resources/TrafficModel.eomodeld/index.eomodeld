@@ -6,6 +6,8 @@
         {className = "com.as.model.AdRelease"; name = AdRelease; }, 
         {className = "com.as.model.Client"; name = Client; }, 
         {className = "com.as.model.Person"; name = Person; }, 
+        {className = "com.as.model.Project"; name = Project; }, 
+        {className = "com.as.model.ProjectPerson"; name = ProjectPerson; }, 
         {className = "com.as.model.RowColor"; name = RowColor; }, 
         {className = "com.as.model.Security"; name = Security; }, 
         {className = "com.as.model.StudioNumber"; name = StudioNumber; }

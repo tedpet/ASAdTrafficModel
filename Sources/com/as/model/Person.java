@@ -22,6 +22,7 @@ public class Person extends _Person implements ERCoreUserInterface  {
 		return (Person) ERXThreadStorage.valueForKey("user");
 	}
 
+	@Override
 	public void awakeFromInsertion (EOEditingContext editingContext) {
 		super.awakeFromInsertion (editingContext);
 
@@ -34,7 +35,7 @@ public class Person extends _Person implements ERCoreUserInterface  {
 
 		this.setIsActive(true);
 		
-		Security theSec = Security.createSecurity(editingContext, false, false, false, false, false, false, false, false, false, false, false, false, false);			
+		Security theSec = Security.createSecurity(editingContext, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false);			
 		
 		this.setSecurity(theSec);
 	
@@ -56,9 +57,12 @@ public class Person extends _Person implements ERCoreUserInterface  {
 		return currentUser;
 	}
 
-	public String fullName() {
-		return this.firstName() + " " + this.lastName();
-	}
+//  public String fullName() {
+//    return this.firstName() + " " + this.lastName();
+//  }
+//  public String getFullName() {
+//    return this.firstName() + " " + this.lastName();
+//  }
 
 	public static Person validateLogin(EOEditingContext editingContext, String username, String password) {
 		EOQualifier qual = Person.LOGIN.eq(username).and(Person.PASSWORD.eq(password));

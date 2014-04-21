@@ -12,6 +12,13 @@
             name = firstName; 
             prototypeName = varchar255; 
         }, 
+        {
+            columnName = fullname; 
+            isReadOnly = Y; 
+            name = fullName; 
+            prototypeName = longText; 
+            readFormat = "firstName || ' ' || lastName"; 
+        }, 
         {allowsNull = N; name = id; prototypeName = id; }, 
         {columnName = isactive; name = isActive; prototypeName = intBoolean; }, 
         {
@@ -37,16 +44,45 @@
             columnName = securityid; 
             name = securityID; 
             prototypeName = id; 
-        }
+        }, 
+        {allowsNull = Y; columnName = title; name = title; prototypeName = longText; }
     ); 
-    attributesUsedForLocking = (email, firstName, id, isActive, lastName, login, password, securityID); 
+    attributesUsedForLocking = (
+        email, 
+        firstName, 
+        fullName, 
+        id, 
+        isActive, 
+        lastName, 
+        login, 
+        password, 
+        securityID, 
+        title
+    ); 
     className = "com.as.model.Person"; 
-    classProperties = (email, firstName, isActive, lastName, login, password, security); 
+    classProperties = (
+        email, 
+        firstName, 
+        fullName, 
+        isActive, 
+        lastName, 
+        login, 
+        password, 
+        projectPersons, 
+        security, 
+        title
+    ); 
     externalName = Person; 
-    fetchSpecificationDictionary = {}; 
     name = Person; 
     primaryKeyAttributes = (id); 
     relationships = (
+        {
+            destination = ProjectPerson; 
+            isToMany = Y; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = personID; sourceAttribute = id; }); 
+            name = projectPersons; 
+        }, 
         {
             destination = Security; 
             isMandatory = Y; 

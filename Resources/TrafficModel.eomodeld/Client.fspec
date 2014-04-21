@@ -1,0 +1,18 @@
+{
+    activeClients = {
+        class = EOFetchSpecification; 
+        entityName = Client; 
+        prefetchingRelationshipKeyPaths = (); 
+        qualifier = {
+            class = EOKeyValueQualifier; 
+            key = isActive; 
+            selectorName = "isEqualTo:"; 
+            value = {class = NSNumber; value = 1; }; 
+        }; 
+    }; 
+    isActive = {
+        class = EOFetchSpecification; 
+        entityName = Client; 
+        prefetchingRelationshipKeyPaths = (); 
+    }; 
+}
